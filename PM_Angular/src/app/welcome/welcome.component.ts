@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WelcomeService } from './welcome.service';
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  gif!: string;
 
-  constructor() { }
+  constructor(private apiService: WelcomeService) {
+    // this.gif = this.
+   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // this.apiService.getGIF().subscribe((data: any) => {
+    //   console.log(data)
+    //   this.gif = data?.data.images.downsized_medium.url
+    // })
+
+    this.apiService.getProject().subscribe((res: any) => {
+      console.log(res)
+    })
   }
 
 }
