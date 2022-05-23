@@ -9,12 +9,15 @@ import { TeamComponent } from './dashboardScreen/team/team.component';
 import { DashboardComponent } from './dashboardScreen/dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RegisterComponent } from './registration/register/register.component';
-import { PersonalDetailsComponent } from './registration/personal-details/personal-details.component';
 import { LoginDetailsComponent } from './registration/login-details/login-details.component';
 import { FinishRegistrationComponent } from './registration/finish-registration/finish-registration.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AddProjectComponent } from './dashboardScreen/addProject/addproject.component';
+import { ShowProjectComponent } from './dashboardScreen/show-project/show-project.component';
+import { EditProjectComponent } from './dashboardScreen/edit-project/edit-project.component'
 
 @NgModule({
   declarations: [
@@ -25,17 +28,20 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
     DashboardComponent,
     WelcomeComponent,
     RegisterComponent,
-    PersonalDetailsComponent,
     LoginDetailsComponent,
     FinishRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    AddProjectComponent,
+    ShowProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

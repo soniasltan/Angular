@@ -10,6 +10,7 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  cleanedData!: any;
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -27,8 +28,10 @@ export class AuthenticationService {
           .pipe(map(user => {
               // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
               user.authdata = window.btoa(username + ':' + password);
-              localStorage.setItem('currentUser', JSON.stringify(user));
-              this.currentUserSubject.next(user);
+              this.cleanedData = user.data;
+              delete this.cleanedData.password;
+              localStorage.setItem('currentUser', JSON.stringify(this.cleanedData));
+              this.currentUserSubject.next(this.cleanedData);
               return user;
           }));
   }

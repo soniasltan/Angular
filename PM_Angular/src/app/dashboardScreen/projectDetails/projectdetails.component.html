@@ -1,79 +1,104 @@
-<div class="container-fluid mt-2 d-flex justify-content-between" id="projectDropdowns">
-    <div class="dropdown" id="projName">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Project A
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Project A</a></li>
-            <li><a class="dropdown-item" href="#">Project B</a></li>
-            <li><a class="dropdown-item" href="#">Project C</a></li>
-        </ul>
-    </div>
-    <div class="dropdown" id="projYear">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            2019
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">2019</a></li>
-            <li><a class="dropdown-item" href="#">2020</a></li>
-            <li><a class="dropdown-item" href="#">2021</a></li>
-        </ul>
-    </div>
-</div>
 <div class="container-fluid" style="background-color: white;">
-    <div class="container text-white m-1 p-2" style="width: 98%; background-color: #5f7a84;">
-        PROJECT BRIEFING
+    <div class="container-fluid" id="team">
+        <div class="container text-white m-1 my-2 p-2" style="width: 98%; background-color: #5f7a84;">
+            TEAM MEMBERS
+        </div>
+        <div class="container">
+            <span class="badge bg-secondary rounded-pill mx-1" style="font-size: 14px;"
+                *ngFor="let member of teamMembers">{{member.firstName}} {{member.lastName}}</span>
+            <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;"  (click)="openAdd(addMember)">+ Add new</button>
+            <ng-template #addMember let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Add new team member</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="addUserForm">
+                    <div class="mb-3">
+                      <label for="newMember">Select user to add to team</label>
+                      <div class="input-group">
+                        <select class="form-select" (change)="newMemberChange($event)" name="newMember" id="newMember" formControlName="newMember">
+                            <option disabled selected value="">Users</option>
+                            <option *ngFor="let user of otherUsers" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Save</button>
+                </div>
+              </ng-template>
+              
+            <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openRemove(removeMember)">- Remove</button>
+            <ng-template #removeMember let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Remove team member</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="removeUserForm" >
+                    <div class="mb-3">
+                      <label for="removedMember">Select user to remove from team</label>
+                      <div class="input-group">
+                        <select class="form-select" (change)="removeMemberChange($event)" name="removedMember" id="removedMember" formControlName="removedMember">
+                            <option disabled selected value="">Users</option>
+                            <option *ngFor="let user of teamMembers" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Save</button>
+                </div>
+              </ng-template>
+        </div>
     </div>
-    <table class="table table-borderless" style="width:100%;">
-        <tbody>
-            <tr class="d-flex justify-content-between" style="padding-right: 25%;">
-                <td>Project Cost</td>
-                <td>$2113507</td>
-            </tr>
-            <tr class="d-flex justify-content-between" style="padding-right: 25%;">
-                <td>Current Expenditure</td>
-                <td>$96788</td>
-            </tr>
-            <tr class="d-flex justify-content-between" style="padding-right: 25%;">
-                <td>Available Funds</td>
-                <td>$52536</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="container text-white m-1 p-2" style="width: 98%; background-color: #5f7a84;">
-        TEAM MEMBERS SUMMARY
+    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
+        PROJECTS
     </div>
-    <table class="table text-start" style="width:100%; border-width: 0.1px; border-color: #dbdfe4;">
-        <thead style="border-bottom-width: 0.1px; border-color: #dbdfe4;">
-            <tr>
-                <th class="pe-5" scope="col">Region</th>
-                <th class="ps-4 pe-5" scope="col">Team Members Count</th>
-                <th class="ps-4 pe-5" scope="col">Temporarily Unavailable Members</th>
+    <table class="table table-hover table-bordered mt-2">
+        <thead>
+            <tr class="table-light">
+                <th scope="col">Project Name</th>
+                <th scope="col">Client</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created Date</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="pe-5" scope="row">East</th>
-                <td class="ps-4 pe-5">20</td>
-                <td class="ps-4 pe-5">4</td>
-            </tr>
-            <tr>
-                <th class="pe-5" scope="row">South</th>
-                <td class="ps-4 pe-5">15</td>
-                <td class="ps-4 pe-5">8</td>
-            </tr>
-            <tr>
-                <th class="pe-5" scope="row">West</th>
-                <td class="ps-4 pe-5">17</td>
-                <td class="ps-4 pe-5">1</td>
-            </tr>
-            <tr>
-                <th class="pe-5" scope="row">North</th>
-                <td class="ps-4 pe-5">15</td>
-                <td class="ps-4 pe-5">6</td>
+            <tr *ngFor="let project of projects">
+                <th scope="row"><a [routerLink]="['project/', project.id]">{{project.projectName}}</a></th>
+                <td>{{getClientName(project.clientId)}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.createdDate | date:'medium'}}</td>
             </tr>
         </tbody>
     </table>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" routerLink="/dashboard/addproject">+ Add new project</button>
+    <!-- <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openDeleteProject(deleteProject)">- Delete project</button>
+    <ng-template #deleteProject let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete project</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="deleteProjectForm" >
+          <div class="mb-3">
+            <label for="deletedProject">Select project to delete</label>
+            <div class="input-group">
+              <select class="form-select" (change)="deleteProjectChange($event)" name="deletedProject" id="deletedProject" formControlName="deletedProject">
+                  <option disabled selected value="">Projects</option>
+                  <option *ngFor="let project of projects" [value]="project.id">{{project.projectName}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Delete</button>
+      </div>
+    </ng-template> -->
+    
 </div>

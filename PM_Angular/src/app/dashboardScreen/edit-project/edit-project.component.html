@@ -1,0 +1,103 @@
+<div class="container-fluid" id="register">
+    <div class="card mx-auto mt-5" style="width: 90%">
+        <div class="card-header text-center">
+            <h4 class="mb-0">Edit Project</h4>
+        </div>
+        <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+            <div class="card-body px-4 py-4 d-flex flex-column align-items-center text-start">
+                <div class="card-text d-flex flex-column justify-content-center" style="width: 80%;">
+                    <div class="form-group row mb-2">
+                        <label for="projectName" class="col-sm-4 col-form-label">Project Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="projectName" id="projectName"
+                                [ngClass]="{
+                'is-invalid': editProjectForm.get('projectName').invalid && (editProjectForm.get('projectName').dirty || editProjectForm.get('projectName').touched || editProjectForm.submitted),
+
+                'is-valid': editProjectForm.get('projectName').valid && (editProjectForm.get('projectName').dirty || editProjectForm.get('projectName').touched || editProjectForm.submitted) }">
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('projectName').invalid && (editProjectForm.get('projectName').dirty || editProjectForm.get('projectName').touched || editProjectForm.submitted) && editProjectForm.get('projectName').errors?.required">
+                                Project name cannot be blank</span>
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('projectName').invalid && (editProjectForm.get('projectName').dirty || editProjectForm.get('projectName').touched || editProjectForm.submitted) && editProjectForm.get('projectName').errors?.minlength">
+                                Project name must contain at least 2 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="projectDescription" class="col-sm-4 col-form-label">Project Description</label>
+                        <div class="col-sm-8">
+                            <input type="projectDescription" class="form-control" formControlName="projectDescription"
+                                id="projectDescription"
+                                [ngClass]="{
+                'is-invalid': editProjectForm.get('projectDescription').invalid && (editProjectForm.get('projectDescription').dirty || editProjectForm.get('projectDescription').touched || editProjectForm.submitted),
+
+                'is-valid': editProjectForm.get('projectDescription').valid && (editProjectForm.get('projectDescription').dirty || editProjectForm.get('projectDescription').touched || editProjectForm.submitted) }">
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('projectDescription').invalid && (editProjectForm.get('projectDescription').dirty || editProjectForm.get('projectDescription').touched || editProjectForm.submitted) && editProjectForm.get('projectDescription').errors?.required">
+                                Project description cannot be blank</span>
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('projectDescription').invalid && (editProjectForm.get('projectDescription').dirty || editProjectForm.get('projectDescription').touched || editProjectForm.submitted) && editProjectForm.get('projectDescription').errors?.minlength">
+                                Project description must contain at least 2 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="clientId" class="col-sm-4 col-form-label">Client</label>
+                        <div class="col-sm-8 d-flex align-items-center">
+                            <div class="form-check-label form-check-inline">
+                                <select class="form-select" (change)="clientChange($event)" name="clientId"
+                                    id="clientId" formControlName="clientId">
+                                    <option disabled selected value="">Clients</option>
+                                    <option *ngFor="let client of clientList" [value]="client.id">{{client.clientName}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('clientId').invalid && (editProjectForm.get('clientId').dirty || editProjectForm.get('clientId').touched || editProjectForm.submitted) && editProjectForm.get('clientId').errors?.required">
+                                Please select client</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="last_name" class="col-sm-4 col-form-label">Status</label>
+                        <div class="col-sm-8 d-flex align-items-center">
+                            <div class="form-check-label form-check-inline" *ngFor="let status of statuses">
+                                <input type="radio" name="status" [id]="status" [value]="status"
+                                    class="form-check-input" formControlName="status">
+                                <label [for]="status" class="form-check-label">{{status}}</label>
+                            </div>
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('status').invalid && (editProjectForm.get('status').dirty || editProjectForm.get('status').touched || editProjectForm.submitted) && editProjectForm.get('status').errors?.required">
+                                Please select status</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="projectCost" class="col-sm-4 col-form-label">Project Cost</label>
+                        <div class="col-sm-8">
+                            <input type="projectCost" class="form-control" id="projectCost"
+                                formControlName="projectCost"
+                                [ngClass]="{
+                        'is-invalid': editProjectForm.get('projectCost').invalid && (editProjectForm.get('projectCost').dirty || editProjectForm.get('projectCost').touched || editProjectForm.submitted),
+                        
+                        'is-valid': editProjectForm.get('projectCost').valid && (editProjectForm.get('projectCost').dirty || editProjectForm.get('projectCost').touched || editProjectForm.submitted) }">
+
+                            <span class="text-danger"
+                                *ngIf="editProjectForm.get('projectCost').invalid && (editProjectForm.get('projectCost').dirty || editProjectForm.get('projectCost').touched || editProjectForm.submitted) && editProjectForm.get('projectCost').errors?.required">
+                                Project cost cannot be blank</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </div>
+            <div class="card-footer text-muted footerbtns d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary mx-1 px-3 float-start" routerLink="/dashboard">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary mx-1 px-3">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>

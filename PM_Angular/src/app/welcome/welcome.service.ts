@@ -10,13 +10,13 @@ export class WelcomeService {
 
   constructor(private http: HttpClient) { }
 
-  apiKey = 'fSj7B8266gpkqZQDGaDxmI4ICnxFSqAf';
+  // apiKey = 'fSj7B8266gpkqZQDGaDxmI4ICnxFSqAf';
 
-  getGIF() {
-    return this.http.get(`https://api.giphy.com/v1/gifs/random?api_key=${this.apiKey}`);
-  }
+  // getGIF() {
+  //   return this.http.get(`https://api.giphy.com/v1/gifs/random?api_key=${this.apiKey}`);
+  // }
 
-  getProject() {
-    return this.http.get('http://localhost:5109/api/Projects')
-  }
+  // getProject() {
+  //   return this.http.get('http://localhost:5109/api/Projects')
+  // }
 }

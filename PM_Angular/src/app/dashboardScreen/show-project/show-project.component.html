@@ -1,0 +1,30 @@
+<div class="container-fluid" style="background-color: white;">
+    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
+        <h5>{{project.projectName}}</h5>
+    </div>
+    <!-- <h6><strong>Project description: </strong>{{project.projectDescription}}</h6>
+    <p><strong>Client: </strong></p>
+    <p>Project.</p> -->
+    <table class="table table-hover table-bordered mt-2">
+        <thead>
+            <tr class="table-light">
+                <th scope="col">Description</th>
+                <th scope="col">Client</th>
+                <th scope="col">Status</th>
+                <th scope="col">Project Cost</th>
+                <th scope="col">Created Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{project.projectDescription}}</td>
+                <td>{{getClientName(project.clientId)}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.projectCost | currency}}</td>
+                <td>{{project.createdDate | date:'medium'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
+    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;">Delete project</button>
+</div>

@@ -19,9 +19,9 @@ export class WelcomeComponent implements OnInit {
     //   this.gif = data?.data.images.downsized_medium.url
     // })
 
-    this.apiService.getProject().subscribe((res: any) => {
-      console.log(res)
-    })
+    // this.apiService.getProject().subscribe((res: any) => {
+    //   console.log(res)
+    // })
   }
 
 }

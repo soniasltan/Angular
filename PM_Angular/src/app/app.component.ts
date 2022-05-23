@@ -15,7 +15,6 @@ export class AppComponent {
   // username: string | null;
   currentUser!: User;
 
-
     constructor(private router: Router,
       private authenticationService: AuthenticationService){
       // if (localStorage.getItem("currentUser") != null) {
