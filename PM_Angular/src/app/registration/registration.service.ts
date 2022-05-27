@@ -31,4 +31,8 @@ export class RegistrationService {
   getTeams() {
     return this.http.get<any>(`${environment.apiUrl}/Team`)
   }
+
+  checkUsername(username: string) {
+    return this.http.get<any>(`${environment.apiUrl}/User/CheckUser?username=${username}`)
+  }
 }

@@ -17,7 +17,8 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddProjectComponent } from './dashboardScreen/addProject/addproject.component';
 import { ShowProjectComponent } from './dashboardScreen/show-project/show-project.component';
-import { EditProjectComponent } from './dashboardScreen/edit-project/edit-project.component'
+import { EditProjectComponent } from './dashboardScreen/edit-project/edit-project.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EditProjectComponent } from './dashboardScreen/edit-project/edit-projec
     LoginComponent,
     AddProjectComponent,
     ShowProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

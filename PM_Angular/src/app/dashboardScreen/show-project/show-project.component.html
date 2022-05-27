@@ -25,6 +25,6 @@
             </tr>
         </tbody>
     </table>
-    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
-    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;">Delete project</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;">Delete project</button>
 </div>

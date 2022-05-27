@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   error = '';
   message!: any;
   newUserValues!: any;
+  usernameMsg!: any;
+  usernameStatus!: any;
 
   constructor(private router:Router,private activatedRoute:ActivatedRoute, private registrationService:RegistrationService, private formBuilder:FormBuilder, private customValidationService:CustomValidationService) {
 
@@ -49,8 +51,10 @@ export class RegisterComponent implements OnInit {
   get f() {return this.newUserForm.controls;}
 
   onSubmit(){
-    this.newUserForm["submitted"] = true;
-    if (this.newUserForm.invalid) {
+    if (this.f['username'].value && !this.f['password'].value){
+      return
+    } else if (this.newUserForm.invalid) {
+      this.newUserForm["submitted"] = true;
       return;
   }
     console.log(this.newUserForm.value);
@@ -64,6 +68,7 @@ export class RegisterComponent implements OnInit {
     delete this.newUserValues["role"]
     console.log("teamId", this.newUserForm.value.team)
     console.log("for req: ", this.newUserValues);
+    this.newUserForm["submitted"] = true;
     // console.log("vals: ", this.f['username'].value, this.f['password'].value, this.newUserValues.userRolesId, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
     this.registrationService.createUser(this.f['username'].value, this.f['password'].value, this.newUserValues.userRolesId, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
           .pipe(first())
@@ -85,5 +90,25 @@ export class RegisterComponent implements OnInit {
               }
           );
     }
+
+  checkUsername() {
+    if(this.f['username'].invalid) {
+      return
+    } else {
+      this.registrationService.checkUsername(this.f['username'].value)
+      .subscribe(
+        res => {
+          if (res.status == 'unavailable') {
+            this.usernameMsg = res.message
+            this.usernameStatus = res.status
+            this.newUserForm.reset()
+          } else {
+            this.usernameMsg = res.message
+            this.usernameStatus = res.status
+          }
+        }
+      )
+    }
+  }
 
 }

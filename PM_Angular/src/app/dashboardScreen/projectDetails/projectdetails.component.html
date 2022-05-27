@@ -1,12 +1,12 @@
 <div class="container-fluid" style="background-color: white;">
     <div class="container-fluid" id="team">
-        <div class="container text-white m-1 my-2 p-2" style="width: 98%; background-color: #5f7a84;">
+        <div class="container text-white m-1 my-2 p-2" style="width: 98%; background-color: #23395b;">
             TEAM MEMBERS
         </div>
         <div class="container">
             <span class="badge bg-secondary rounded-pill mx-1" style="font-size: 14px;"
                 *ngFor="let member of teamMembers">{{member.firstName}} {{member.lastName}}</span>
-            <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;"  (click)="openAdd(addMember)">+ Add new</button>
+            <button *ngIf="currentUser.userRolesId == 3" class="badge rounded-pill mx-1" style="font-size: 14px; background-color: #59c9a5;"  (click)="openAdd(addMember)">+ Add new</button>
             <ng-template #addMember let-modal>
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Add new team member</h4>

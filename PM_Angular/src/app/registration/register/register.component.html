@@ -12,9 +12,9 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control" formControlName="username" id="username"
                                 [ngClass]="{
-                            'is-invalid': newUserForm.get('username').invalid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted),
+                            'is-invalid': usernameStatus == 'unavailable' || (newUserForm.get('username').invalid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted)),
 
-                            'is-valid': newUserForm.get('username').valid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted) }">
+                            'is-valid': usernameStatus == 'available' && newUserForm.get('username').valid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted) }">
                             <span class="text-danger"
                                 *ngIf="newUserForm.get('username').invalid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted) && newUserForm.get('username').errors?.required">
                                 Username cannot be blank</span>
@@ -22,6 +22,11 @@
                             <span class="text-danger"
                                 *ngIf="newUserForm.get('username').invalid && (newUserForm.get('username').dirty || newUserForm.get('username').touched || newUserForm.submitted) && newUserForm.get('username').errors?.minlength">
                                 Username must contain at least 4 characters</span>
+                        </div>
+                        <div class="d-flex flex-column align-items-start" style="margin-left:240px">
+                            <span *ngIf="usernameStatus == 'unavailable'" class="text-danger">{{usernameMsg}}</span>
+                            <span *ngIf="usernameStatus == 'available'" class="text-success">{{usernameMsg}}</span>
+                            <button class="btn btn-primary mt-1" (click)="checkUsername()">Check username availability</button>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
