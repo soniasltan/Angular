@@ -1,0 +1,13 @@
+<div class="container-fluid" style="background-color: white;">
+    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
+        <h5>My Profile Details</h5>
+    </div>
+    <div class="container">
+        <p><strong>First Name: </strong>{{currentUser.firstName}}</p>
+        <p><strong>Last Name: </strong>{{currentUser.lastName}}</p>
+        <p><strong>Email: </strong>{{currentUser.email}}</p>
+        <p><strong>Phone Number: </strong>{{currentUser.phonenumber}}</p>
+        <p><strong>Address: </strong>{{currentUser.address}}</p>
+    </div>
+    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" routerLink="edit">Edit profile details</button>
+</div>

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-dark justify-content-between px-4" style="background-color: #d81e5b;">
-    <div class="navbar-nav d-flex flex-row float-left">
+    <div id="mainnav" class="navbar-nav nav-pills nav-justified d-flex flex-row float-left">
         <a class="navbar-brand">TaskMate Project Management</a>
-        <a *ngIf="currentUser" class="nav-item nav-link active mx-2" routerLink="/dashboard">Dashboard</a>
-        <a *ngIf="currentUser" class="nav-item nav-link active mx-2" routerLink="/dashboard">Profile</a>
+        <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/dashboard">Dashboard</a>
+        <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/profile">Profile</a>
     </div>
     <!-- <form class="d-flex align-items-center">
         <button class="btn mb-0 pb-0" style="background-color: #e4e7eb;"><span class="material-icons"

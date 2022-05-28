@@ -6,6 +6,10 @@ import { EditProjectComponent } from './dashboardScreen/edit-project/edit-projec
 import { ProjectDetailsComponent } from './dashboardScreen/projectDetails/projectdetails.component';
 import { ShowProjectComponent } from './dashboardScreen/show-project/show-project.component';
 import { LoginComponent } from './login/login.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { ManageRolesComponent } from './profile/manage-roles/manage-roles.component';
+import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
+import { ProfileComponent } from './profile/profile.component';
 import { FinishRegistrationComponent } from './registration/finish-registration/finish-registration.component';
 import { LoginDetailsComponent } from './registration/login-details/login-details.component';
 // import { PersonalDetailsComponent } from './registration/personal-details/personal-details.component';
@@ -40,10 +44,15 @@ const routes: Routes = [
     path: 'signup',
     component: RegisterComponent
   },
-  // {
-  //   path: 'register/step-1',
-  //   component: LoginDetailsComponent
-  // },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    children: [
+      {path:'', component: ProfileDetailsComponent},
+      {path:'edit', component: EditProfileComponent},
+      {path:'roles', component: ManageRolesComponent}
+    ]
+  },
   // {
   //   path: 'register/step-2',
   //   component: PersonalDetailsComponent

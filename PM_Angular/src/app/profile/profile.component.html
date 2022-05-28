@@ -1,1 +1,25 @@
-<p>profile works!</p>
+<div class="container-fluid" id="dashboard">
+    <h4 class="mx-3 mt-2">Profile</h4>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-3 pb-2" style="background-color: #9b9ece;">
+                <ul class="list-group mt-2">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a routerLink="/profile">
+                            My Profile Details
+                        </a>
+                    </li>
+                    <li *ngIf="currentUser.userRolesId == 3" class="list-group-item d-flex justify-content-between">
+                        <a routerLink="roles">
+                            Manage Team Roles
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9 pb-2 d-flex flex-column" style="background-color: #ebebeb;">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+

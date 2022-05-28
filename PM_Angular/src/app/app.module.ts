@@ -18,7 +18,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddProjectComponent } from './dashboardScreen/addProject/addproject.component';
 import { ShowProjectComponent } from './dashboardScreen/show-project/show-project.component';
 import { EditProjectComponent } from './dashboardScreen/edit-project/edit-project.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { ManageRolesComponent } from './profile/manage-roles/manage-roles.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { ProfileComponent } from './profile/profile.component'
     AddProjectComponent,
     ShowProjectComponent,
     EditProjectComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileDetailsComponent,
+    EditProfileComponent,
+    ManageRolesComponent
   ],
   imports: [
     BrowserModule,
