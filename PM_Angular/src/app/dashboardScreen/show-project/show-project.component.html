@@ -1,12 +1,12 @@
-<div class="container-fluid" style="background-color: white;">
-    <div class="container-fluid" id="team">
-        <div class="container text-white m-1 my-2 p-2" style="width: 98%; background-color: #23395b;">
-            TEAM MEMBERS
+<div class="container-fluid">
+    <div class="container-fluid p-0" id="team">
+        <div class="container-fluid text-white mt-3 my-2 p-2" style="background-color: #23395b;">
+            <h4 class="m-auto">Team Members</h4>
         </div>
         <div class="container">
-            <span class="badge bg-secondary rounded-pill mx-1" style="font-size: 14px;"
+            <span class="badge bg-secondary rounded-pill mx-1" style="font-size: 15px;"
                 *ngFor="let member of teamMembers">{{member.firstName}} {{member.lastName}}</span>
-            <button *ngIf="currentUser.userRolesId == 3" class="badge rounded-pill mx-1" style="font-size: 14px; background-color: #59c9a5;"  (click)="openAdd(addMember)">+ Add new</button>
+            <button *ngIf="currentUser.userRolesId == 3" class="badge rounded-pill mx-1 text-dark" style="font-size: 15px; background-color: #f6bd60;"  (click)="openAdd(addMember)">+ Add new</button>
             <ng-template #addMember let-modal>
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Add new team member</h4>
@@ -30,7 +30,7 @@
             </form>
               </ng-template>
               
-            <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openRemove(removeMember)">- Remove</button>
+            <button *ngIf="currentUser.userRolesId == 3" class="badge text-dark rounded-pill mx-1" style="font-size: 15px; background-color: #fb8500;" (click)="openRemove(removeMember)">- Remove</button>
             <ng-template #removeMember let-modal>
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Remove team member</h4>
@@ -55,12 +55,12 @@
               </ng-template>
         </div>
     </div>
-    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
-        <h5>{{project.projectName}}</h5>
+    <div class="container text-white m-1 mt-2 p-2" style="background-color: #23395b;">
+        <h5 class="m-auto">{{project.projectName}}</h5>
     </div>
-    <table class="table table-hover table-bordered mt-2">
+    <table class="table table-hover table-bordered mt-2" style="background-color: white;">
         <thead>
-            <tr class="table-light">
+            <tr style="background-color: #84a59d">
                 <th scope="col">Description</th>
                 <th scope="col">Client</th>
                 <th scope="col">Status</th>
@@ -78,8 +78,8 @@
             </tr>
         </tbody>
     </table>
-    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
-    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openDeleteProject(deleteProject)">Delete project</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge text-dark rounded-pill mx-1" style="font-size: 15px; background-color: #caf0f8;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge text-dark rounded-pill mx-1" style="font-size: 15px; background-color: #fb8500;" (click)="openDeleteProject(deleteProject)">Delete project</button>
     <ng-template #deleteProject let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Confirm Delete Project</h4>

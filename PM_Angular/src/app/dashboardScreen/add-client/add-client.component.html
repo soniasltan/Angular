@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="card mx-auto mt-5" style="width: 90%">
-        <div class="card-header text-center">
-            <h4 class="mb-0">Create New Client</h4>
+        <div class="card-header text-center" style="background-color: #84a59d">
+            <h4 class="mb-0 p-2">Create New Client</h4>
         </div>
         <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
             <div class="card-body px-4 py-4 d-flex flex-column align-items-center text-start">
@@ -58,11 +58,11 @@
                 </div>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </div>
-            <div class="card-footer text-muted footerbtns d-flex justify-content-center">
+            <div class="card-footer text-muted footerbtns d-flex justify-content-center" style="background-color: #84a59d">
                 <button type="button" class="btn btn-secondary mx-1 px-3 float-start" routerLink="/dashboard/addproject">
                     Cancel
                 </button>
-                <button type="submit" class="btn btn-primary mx-1 px-3">
+                <button type="submit" class="btn mx-1 px-3" style="background-color: #f6bd60">
                     Submit
                 </button>
             </div>

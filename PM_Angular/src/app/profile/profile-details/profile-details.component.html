@@ -1,13 +1,12 @@
-<div class="container-fluid" style="background-color: white;">
-    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
-        <h5>My Profile Details</h5>
+<div class="container-fluid">
+    <div class="container-fluid text-white mt-3 p-2" style="background-color: #23395b;">
+        <h4 class="m-auto">My Profile Details</h4>
     </div>
-    <div class="container">
-        <p><strong>First Name: </strong>{{userDetails.firstName}}</p>
-        <p><strong>Last Name: </strong>{{userDetails.lastName}}</p>
+    <div class="container-fluid mt-3 p-2" style="background-color: white;">
+        <p><strong>Name: </strong>{{userDetails.firstName}} {{userDetails.lastName}}</p>
         <p><strong>Email: </strong>{{userDetails.email}}</p>
         <p><strong>Phone Number: </strong>{{userDetails.phonenumber}}</p>
         <p><strong>Address: </strong>{{userDetails.address}}</p>
     </div>
-    <button class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" routerLink="edit">Edit profile details</button>
+    <button class="badge text-dark rounded-pill mx-1 mt-2" style="font-size: 15px; background-color: #caf0f8;" routerLink="edit">Edit profile details</button>
 </div>

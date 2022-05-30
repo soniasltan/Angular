@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { RegistrationService } from '../registration.service';
 import { CustomValidationService } from '../custom-validation.service';
-import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +12,7 @@ import * as bcrypt from 'bcryptjs';
 })
 export class RegisterComponent implements OnInit {
   newUserForm: FormGroup | any = null;
-  roles = ["Project Manager", "Employee"];
+  defaultRole = 4;
   loading = false;
   submitted = false;
   returnUrl!: string;
@@ -36,9 +35,7 @@ export class RegisterComponent implements OnInit {
       lastName: [null, [Validators.required, Validators.minLength(2)]],
       email: [null, [Validators.required, Validators.email]],
       phonenumber: [null, [Validators.required]],
-      address: [null, [Validators.required, Validators.minLength(2)]],
-      role: [null, [Validators.required]]
-
+      address: [null, [Validators.required, Validators.minLength(2)]]
     }, {
       validators: [
         this.customValidationService.compareValidator("confirmPassword", "password")
@@ -59,14 +56,8 @@ export class RegisterComponent implements OnInit {
   }
     this.newUserValues = this.newUserForm.value
     delete this.newUserValues["confirmPassword"];
-    if (this.newUserValues.role == "Project Manager") {
-      this.newUserValues.userRolesId = 3
-    } else {
-      this.newUserValues.userRolesId = 4
-    }
-    delete this.newUserValues["role"]
     this.newUserForm["submitted"] = true;
-    this.registrationService.createUser(this.f['username'].value, this.f['password'].value, this.newUserValues.userRolesId, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
+    this.registrationService.createUser(this.f['username'].value, this.f['password'].value, this.defaultRole, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
           .pipe(first())
           .subscribe(
             data => {

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark justify-content-between px-4" style="background-color: #3c096c;">
     <div id="mainnav" class="navbar-nav nav-pills nav-justified d-flex flex-row float-left">
-        <a class="navbar-brand">TaskMate Project Management</a>
+        <h3><a class="navbar-brand">TaskMate Project Management</a></h3>
         <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/dashboard">Dashboard</a>
         <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/profile">Profile</a>
     </div>
@@ -9,7 +9,7 @@
         <a class="nav-item nav-link text-white" routerLink="/signup">Sign Up</a>
     </div>
     <div *ngIf="currentUser" class="d-flex align-items-center">
-        <h5 class="text-white mx-3 align-items-center mb-0"> Hello {{currentUser.firstName}}</h5>
+        <h4 class="text-light mx-3 align-items-center mb-0">Hello <span style="color: #7bdff2">{{currentUser.firstName}}</span></h4>
         <button class="nav-item nav-link text-white" style="background:none; border:none;"(click)="logout()">Logout</button>
     </div>
 </nav>

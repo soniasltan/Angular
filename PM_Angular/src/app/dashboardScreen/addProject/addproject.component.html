@@ -1,7 +1,7 @@
 <div class="container-fluid" id="register">
     <div class="card mx-auto mt-5" style="width: 90%">
-        <div class="card-header text-center">
-            <h4 class="mb-0">Create New Project</h4>
+        <div class="card-header text-center" style="background-color: #84a59d">
+            <h4 class="mb-0 p-2">Create New Project</h4>
         </div>
         <form [formGroup]="addProjectForm" (ngSubmit)="onSubmit()">
             <div class="card-body px-4 py-4 d-flex flex-column align-items-center text-start">
@@ -57,7 +57,7 @@
                                     Please select client</span>
                             </div>
                         </div>
-                        <button type="button" class="col-sm-3 btn btn-outline-dark" style="max-height:40px; margin-left: -15px;" routerLink="/dashboard/addclient">Add New Client</button>
+                        <button type="button" class="col-sm-3 btn" style="background-color: #caf0f8; max-height:40px; margin-left: -15px;" routerLink="/dashboard/addclient">Add New Client</button>
                     </div>
                     <div class="form-group row mb-2">
                         <label for="last_name" class="col-sm-4 col-form-label">Status</label>
@@ -91,11 +91,11 @@
                 </div>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </div>
-            <div class="card-footer text-muted footerbtns d-flex justify-content-center">
+            <div class="card-footer text-muted footerbtns d-flex justify-content-center" style="background-color: #84a59d">
                 <button type="button" class="btn btn-secondary mx-1 px-3 float-start" routerLink="/dashboard">
                     Cancel
                 </button>
-                <button type="submit" class="btn btn-primary mx-1 px-3">
+                <button type="submit" class="btn mx-1 px-3" style="background-color: #f6bd60">
                     Submit
                 </button>
             </div>

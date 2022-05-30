@@ -1,10 +1,10 @@
-<div class="container-fluid" style="background-color: white;">  
-    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #23395b;">
-        PROJECTS
+<div class="container-fluid">  
+    <div class="container-fluid text-white mt-3 p-2" style=" background-color: #23395b;">
+        <h4 class="m-auto">PROJECTS</h4>
     </div>
-    <table class="table table-hover table-bordered mt-2">
+    <table class="table table-hover table-bordered mt-3" style="background-color: white;">
         <thead>
-            <tr class="table-light">
+            <tr style="background-color: #84a59d">
                 <th scope="col">Project Name</th>
                 <th scope="col">Client</th>
                 <th scope="col">Status</th>
@@ -20,6 +20,6 @@
             </tr>
         </tbody>
     </table>
-    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" routerLink="/dashboard/addproject">+ Add new project</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge text-dark rounded-pill mx-1" style="font-size: 15px; background-color: #f6bd60;" routerLink="/dashboard/addproject">+ Add new project</button>
     
 </div>

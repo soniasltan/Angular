@@ -1,23 +1,23 @@
-    <div class="container-fluid text-white p-2 mt-2" style="width: 98%; background-color: #23395b;">
-        {{role}}
+    <div class="container-fluid text-white p-2 mt-3" style="width: 98%; background-color: #23395b;">
+        <h4 class="m-auto">{{role}}</h4>
     </div>
     <span class="material-icons mt-2 mb-1" style="font-size: 80px; background-color: white;">
         account_circle
     </span>
-    <h5 class="mb-3 mt-0">{{currentUser.firstName}} {{currentUser.lastName}}</h5>
+    <h4 class="mb-3 mt-0">{{currentUser.firstName}} {{currentUser.lastName}}</h4>
     <p class="mb-1" style="font-size: 18px;">TEAM SUMMARY</p>
     <ul class="list-group">
         <li *ngIf="currentUser.userRolesId == 3" class="list-group-item d-flex justify-content-between">NO. OF TEAM MEMBERS
-            <span class="badge rounded-pill" style="background-color: #06d6a0">{{teamCount}}</span>
+            <span class="badge rounded-pill" style="background-color: #2c6e49;">{{teamCount}}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">TOTAL COST OF ALL PROJECTS
-            <span class="badge rounded-pill" style="max-height: 30px; background-color: #d81e5b;">{{projectCosts | currency: 'SGD' : 'symbol-narrow' : '1.0-2'}}</span>
+            <span class="badge rounded-pill" style="max-height: 30px; background-color: #2c6e49;">{{projectCosts | currency: 'SGD' : 'symbol-narrow' : '1.0-2'}}</span>
         </li>
         <!-- <li class="list-group-item d-flex justify-content-between">PENDING TASKS
             <span class="badge rounded-pill" style="background-color: #23395b">{{taskCount}}</span>
         </li> -->
         <li class="list-group-item d-flex justify-content-between">CURRENT PROJECTS
-            <span class="badge bg-secondary rounded-pill">{{projectCount}}</span>
+            <span class="badge rounded-pill" style="background-color: #2c6e49;">{{projectCount}}</span>
         </li>
     </ul>
     <p class="mt-4 mb-1" style="font-size: 18px;">MY CLIENTS</p>

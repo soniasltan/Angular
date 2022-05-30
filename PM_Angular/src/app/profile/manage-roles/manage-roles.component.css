@@ -1,3 +1,6 @@
 #usertable a {
     cursor: pointer;
+    text-decoration-line: underline;
+    color: blue;
+    text-decoration-color: blue;
 }
