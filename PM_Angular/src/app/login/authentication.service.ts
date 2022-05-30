@@ -30,6 +30,8 @@ export class AuthenticationService {
               user.authdata = window.btoa(username + ':' + password);
               this.cleanedData = user.data;
               delete this.cleanedData.password;
+              delete this.cleanedData.address;
+              delete this.cleanedData.phonenumber;
               localStorage.setItem('currentUser', JSON.stringify(this.cleanedData));
               this.currentUserSubject.next(this.cleanedData);
               return user;

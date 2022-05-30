@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group row mb-2">
                         <label for="clientId" class="col-sm-4 col-form-label">Client</label>
-                        <div class="col-sm-8 d-flex align-items-center">
+                        <div class="col-sm-5 d-flex align-items-center">
                             <div class="form-check-label form-check-inline">
                                 <select class="form-select" (change)="clientChange($event)" name="clientId"
                                     id="clientId" formControlName="clientId">
@@ -52,12 +52,12 @@
                                     <option *ngFor="let client of clientList" [value]="client.id">{{client.clientName}}
                                     </option>
                                 </select>
+                                <span class="text-danger"
+                                    *ngIf="addProjectForm.get('clientId').invalid && (addProjectForm.get('clientId').dirty || addProjectForm.get('clientId').touched || addProjectForm.submitted) && addProjectForm.get('clientId').errors?.required">
+                                    Please select client</span>
                             </div>
-
-                            <span class="text-danger"
-                                *ngIf="addProjectForm.get('clientId').invalid && (addProjectForm.get('clientId').dirty || addProjectForm.get('clientId').touched || addProjectForm.submitted) && addProjectForm.get('clientId').errors?.required">
-                                Please select client</span>
                         </div>
+                        <button type="button" class="col-sm-3 btn btn-outline-dark" style="max-height:40px; margin-left: -15px;" routerLink="/dashboard/addclient">Add New Client</button>
                     </div>
                     <div class="form-group row mb-2">
                         <label for="last_name" class="col-sm-4 col-form-label">Status</label>

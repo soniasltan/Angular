@@ -55,7 +55,6 @@ export class AddProjectComponent implements OnInit {
 
   clientChange(e: any){
     this.f['clientId'].setValue(e.target.value)
-    console.log("changed clientId val: ", this.f['clientId'].value)
   }
 
   onSubmit(){
@@ -67,10 +66,8 @@ export class AddProjectComponent implements OnInit {
     .pipe(first())
           .subscribe(
             data => {
-              console.log("submitted", data)
               this.message = data.message;
               this.newProjectId = data.projectId;
-              console.log("new Project ID: ",this.newProjectId)
               this.dashboardService.createNewProjectMember(this.currentUser.id, this.newProjectId)
               .pipe(first())
               .subscribe(data => {
@@ -80,7 +77,6 @@ export class AddProjectComponent implements OnInit {
             },
               error => {
                   this.error = error.error;
-                  console.log("error", this.error)
                   this.loading = false;
               }
           );

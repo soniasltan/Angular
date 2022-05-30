@@ -1,10 +1,63 @@
 <div class="container-fluid" style="background-color: white;">
+    <div class="container-fluid" id="team">
+        <div class="container text-white m-1 my-2 p-2" style="width: 98%; background-color: #23395b;">
+            TEAM MEMBERS
+        </div>
+        <div class="container">
+            <span class="badge bg-secondary rounded-pill mx-1" style="font-size: 14px;"
+                *ngFor="let member of teamMembers">{{member.firstName}} {{member.lastName}}</span>
+            <button *ngIf="currentUser.userRolesId == 3" class="badge rounded-pill mx-1" style="font-size: 14px; background-color: #59c9a5;"  (click)="openAdd(addMember)">+ Add new</button>
+            <ng-template #addMember let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Add new team member</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                </div>
+                <form [formGroup]="addUserForm" (ngSubmit)="submitNewMember()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="newMember">Select user to add to team</label>
+                      <div class="input-group">
+                        <select class="form-select" (change)="newMemberChange($event)" name="newMember" id="newMember" formControlName="newMember">
+                            <option disabled selected value="">Users</option>
+                            <option *ngFor="let user of otherUsers" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark">Save</button>
+                </div>
+            </form>
+              </ng-template>
+              
+            <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openRemove(removeMember)">- Remove</button>
+            <ng-template #removeMember let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Remove team member</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                </div>
+                <form [formGroup]="removeUserForm" (ngSubmit)="submitRemoveMember()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="removedMember">Select user to remove from team</label>
+                      <div class="input-group">
+                        <select class="form-select" (change)="removeMemberChange($event)" name="removedMember" id="removedMember" formControlName="removedMember">
+                            <option disabled selected value="">Users</option>
+                            <option *ngFor="let user of teamMembers" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark">Save</button>
+                </div>
+            </form>
+              </ng-template>
+        </div>
+    </div>
     <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #5f7a84;">
         <h5>{{project.projectName}}</h5>
     </div>
-    <!-- <h6><strong>Project description: </strong>{{project.projectDescription}}</h6>
-    <p><strong>Client: </strong></p>
-    <p>Project.</p> -->
     <table class="table table-hover table-bordered mt-2">
         <thead>
             <tr class="table-light">
@@ -26,5 +79,20 @@
         </tbody>
     </table>
     <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" [routerLink]="['/dashboard/updateproject/', projectId]">Edit project details</button>
-    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;">Delete project</button>
+    <button *ngIf="currentUser.userRolesId == 3" class="badge bg-light text-dark rounded-pill mx-1" style="font-size: 14px;" (click)="openDeleteProject(deleteProject)">Delete project</button>
+    <ng-template #deleteProject let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Confirm Delete Project</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <p>Are you sure you want to delete this project?</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cancel</button>
+            <button type="button" class="btn btn-outline-dark" (click)="submitDeleteProject()">Delete</button>
+        </div>
+      </ng-template>
 </div>

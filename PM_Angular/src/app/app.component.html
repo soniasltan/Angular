@@ -1,17 +1,9 @@
-<nav class="navbar navbar-dark justify-content-between px-4" style="background-color: #d81e5b;">
+<nav class="navbar navbar-dark justify-content-between px-4" style="background-color: #3c096c;">
     <div id="mainnav" class="navbar-nav nav-pills nav-justified d-flex flex-row float-left">
         <a class="navbar-brand">TaskMate Project Management</a>
         <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/dashboard">Dashboard</a>
         <a *ngIf="currentUser" class="nav-item nav-link mx-2 px-2" [routerLinkActive]="['active']" routerLink="/profile">Profile</a>
     </div>
-    <!-- <form class="d-flex align-items-center">
-        <button class="btn mb-0 pb-0" style="background-color: #e4e7eb;"><span class="material-icons"
-                style="font-size: 24px;">
-                search
-            </span></button>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn bg-warning my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
     <div *ngIf="!currentUser" class="d-flex align-items-center">
         <a class="nav-item nav-link text-white" routerLink="/login">Login</a>
         <a class="nav-item nav-link text-white" routerLink="/signup">Sign Up</a>
@@ -21,11 +13,5 @@
         <button class="nav-item nav-link text-white" style="background:none; border:none;"(click)="logout()">Logout</button>
     </div>
 </nav>
-<!-- <nav class="navbar mx-4 px-2" style="background-color: #e4e7eb;" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-1">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-    </ol>
-</nav> -->
 
 <router-outlet></router-outlet>

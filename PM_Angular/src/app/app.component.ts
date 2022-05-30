@@ -17,11 +17,6 @@ export class AppComponent {
 
     constructor(private router: Router,
       private authenticationService: AuthenticationService){
-      // if (localStorage.getItem("currentUser") != null) {
-      //   this.username = JSON.parse(localStorage.getItem("currentUser"));
-      // } else {
-      //   this.username = ""
-      // }
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 

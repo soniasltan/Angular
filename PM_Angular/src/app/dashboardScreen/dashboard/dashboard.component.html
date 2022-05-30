@@ -1,18 +1,13 @@
-<div class="container-fluid" id="dashboard">
-    <h4 class="mx-3 mt-2">Dashboard</h4>
+<div class="container-fluid px-0" id="dashboard">
+    <!-- <h4 class="mx-3 mt-2">Dashboard</h4> -->
     <div class="container-fluid">
         <div class="row text-center">
             <div class="col-3 pb-2" id="employee" style="background-color: #9b9ece;">
                 <app-employee></app-employee>
             </div>
-            <div class="col-9 pb-2 d-flex flex-column" id="projectDetails" style="background-color: #ebebeb;">
+            <div class="col-9 pb-2 d-flex flex-column" id="projectDetails" style="background-color: #c6d2ed;">
                 <router-outlet></router-outlet>
-                <!-- <app-projectdetails></app-projectdetails>
-                <app-addproject></app-addproject> -->
             </div>
-            <!-- <div class="col" id="team" style="background-color: #e4e0e0;">
-                <app-team></app-team>
-            </div> -->
         </div>
     </div>
 </div>

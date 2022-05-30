@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { RegistrationService } from '../registration.service';
 import { CustomValidationService } from '../custom-validation.service';
-import { Team } from '../team';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   newUserValues!: any;
   usernameMsg!: any;
   usernameStatus!: any;
-
+  
   constructor(private router:Router,private activatedRoute:ActivatedRoute, private registrationService:RegistrationService, private formBuilder:FormBuilder, private customValidationService:CustomValidationService) {
 
    }
@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
       this.newUserForm["submitted"] = true;
       return;
   }
-    console.log(this.newUserForm.value);
     this.newUserValues = this.newUserForm.value
     delete this.newUserValues["confirmPassword"];
     if (this.newUserValues.role == "Project Manager") {
@@ -66,25 +65,19 @@ export class RegisterComponent implements OnInit {
       this.newUserValues.userRolesId = 4
     }
     delete this.newUserValues["role"]
-    console.log("teamId", this.newUserForm.value.team)
-    console.log("for req: ", this.newUserValues);
     this.newUserForm["submitted"] = true;
-    // console.log("vals: ", this.f['username'].value, this.f['password'].value, this.newUserValues.userRolesId, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
     this.registrationService.createUser(this.f['username'].value, this.f['password'].value, this.newUserValues.userRolesId, this.f['firstName'].value, this.f['lastName'].value, this.f['email'].value, this.f['phonenumber'].value, this.f['address'].value)
           .pipe(first())
           .subscribe(
             data => {
                 this.router.navigate([this.returnUrl]);
-                console.log("submitted", data)
                 this.message = data.message;
             },
               error => {
                 if (error.error.title) {
                   this.error = error.error.title;
-                  console.log("error", this.error)
                 } else {
                   this.error = error.error
-                  console.log("error", this.error)
                 }
                   this.loading = false;
               }

@@ -1,5 +1,4 @@
-<div class="container-fluid" id="dashboard">
-    <h4 class="mx-3 mt-2">Profile</h4>
+<div class="container-fluid" id="profile">
     <div class="container-fluid">
         <div class="row text-center">
             <div class="col-3 pb-2" style="background-color: #9b9ece;">
@@ -7,6 +6,11 @@
                     <li class="list-group-item d-flex justify-content-between">
                         <a routerLink="/profile">
                             My Profile Details
+                        </a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a routerLink="changepassword">
+                            Change Password
                         </a>
                     </li>
                     <li *ngIf="currentUser.userRolesId == 3" class="list-group-item d-flex justify-content-between">

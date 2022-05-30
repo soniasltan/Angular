@@ -50,7 +50,6 @@ export class EditProjectComponent implements OnInit {
         delete this.project.id;
         delete this.project.projectManagerId;
         delete this.project.createdDate;
-        console.log("edit page: ", this.project);
         this.editProjectForm.patchValue(this.project);
       })
 
@@ -63,21 +62,12 @@ export class EditProjectComponent implements OnInit {
         )
       
         this.returnUrl = '/dashboard/project/'+this.projectId
-
-        // this.editProjectForm.setValue({
-        //   projectName: this.project.projectName,
-        //   projectDescription: this.project.projectDescription,
-        //   clientId: this.project.clientId,
-        //   status: this.project.status,
-        //   projectCost: this.project.projectCost
-        // })
 }
 
 get f() {return this.editProjectForm.controls;}
 
 clientChange(e: any){
   this.f['clientId'].setValue(e.target.value)
-  console.log("changed clientId val: ", this.f['clientId'].value)
 }
 
 onSubmit(){
@@ -89,13 +79,11 @@ onSubmit(){
   .pipe(first())
         .subscribe(
           data => {
-            console.log("submitted", data)
             this.message = data.message;
             this.router.navigate([this.returnUrl]);
           },
             error => {
                 this.error = error.error;
-                console.log("error", this.error)
                 this.loading = false;
             }
         );

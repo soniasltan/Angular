@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddClientComponent } from './dashboardScreen/add-client/add-client.component';
 import { AddProjectComponent } from './dashboardScreen/addProject/addproject.component';
 import { DashboardComponent } from './dashboardScreen/dashboard/dashboard.component';
 import { EditProjectComponent } from './dashboardScreen/edit-project/edit-project.component';
 import { ProjectDetailsComponent } from './dashboardScreen/projectDetails/projectdetails.component';
 import { ShowProjectComponent } from './dashboardScreen/show-project/show-project.component';
 import { LoginComponent } from './login/login.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { ManageRolesComponent } from './profile/manage-roles/manage-roles.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 import { ProfileComponent } from './profile/profile.component';
-import { FinishRegistrationComponent } from './registration/finish-registration/finish-registration.component';
-import { LoginDetailsComponent } from './registration/login-details/login-details.component';
-// import { PersonalDetailsComponent } from './registration/personal-details/personal-details.component';
 import { RegisterComponent } from './registration/register/register.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -30,8 +29,10 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      {path:'', component: ProjectDetailsComponent},
+      {path: '', redirectTo:'allprojects', pathMatch: 'full'},
+      {path:'allprojects', component: ProjectDetailsComponent},
       {path:'addproject', component: AddProjectComponent},
+      {path:'addclient', component: AddClientComponent},
       {path:'project/:id', component: ShowProjectComponent},
       {path:'updateproject/:id', component: EditProjectComponent}
     ]
@@ -50,17 +51,10 @@ const routes: Routes = [
     children: [
       {path:'', component: ProfileDetailsComponent},
       {path:'edit', component: EditProfileComponent},
+      {path:'changepassword', component: ChangePasswordComponent},
       {path:'roles', component: ManageRolesComponent}
     ]
   },
-  // {
-  //   path: 'register/step-2',
-  //   component: PersonalDetailsComponent
-  // },
-  // {
-  //   path: 'register/finish',
-  //   component: FinishRegistrationComponent
-  // }
 ];
 
 @NgModule({

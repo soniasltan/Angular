@@ -1,1 +1,49 @@
-<p>manage-roles works!</p>
+<div class="container-fluid" style="background-color: white;">
+    <div class="container text-white m-1 mt-2 p-2" style="width: 98%; background-color: #23395b;">
+        Users
+    </div>
+    <table id="usertable" class="table table-hover table-bordered mt-2">
+        <thead>
+            <tr class="table-light">
+                <th scope="col">Username</th>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUsers">
+                <td>
+                    <a (click)="openChangeRole(changeRole, $event)">
+                        {{user.username}}
+                    </a>
+                </td>
+                <ng-template #changeRole let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Change User Role</h4>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                    </div>
+                    <form [formGroup]="changeRoleForm" (ngSubmit)="submitChange()">
+                    <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="role">Select role for {{selectedUser.firstName}}
+                                    {{selectedUser.lastName}}</label>
+                                <div class="input-group">
+                                    <div class="form-check-label form-check-inline" *ngFor="let role of roles">
+                                        <input type="radio" name="role" [value]="role.id" class="form-check-input" formControlName="role">
+                                        <label [for]="role" class="form-check-label">{{role.name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-dark">Save</button>
+                        </div>
+                    </form>
+                </ng-template>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td *ngIf="user.userRolesId == 3">Project Manager</td>
+                <td *ngIf="user.userRolesId == 4">Employee</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

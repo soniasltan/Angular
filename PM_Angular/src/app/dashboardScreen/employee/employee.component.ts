@@ -50,7 +50,6 @@ export class EmployeeComponent implements OnInit {
     .pipe(first())
     .subscribe((data => {
       data.map((x:ProjectMembers) => this.myProjectIds.push(x.projectId))
-      console.log("employee project ids: ", this.myProjectIds)
     }))
 
     this.dashboardService
@@ -61,16 +60,13 @@ export class EmployeeComponent implements OnInit {
           this.projectData.push(data.filter((x:Project) => x.id == id))
         }
         this.myProjects = this.projectData.flat()
-        console.log('my projects: ', this.myProjects);
         this.projectCount = this.myProjects.length;
         for (let item of this.myProjects) {
           this.projectCosts = this.projectCosts + item.projectCost;
         }
-        console.log('total costs', this.projectCosts);
         this.clientIds = [
           ...new Set(this.myProjects.map((project) => project.clientId)),
         ];
-        console.log('client ids', this.clientIds);
       });
 
     this.dashboardService
@@ -81,21 +77,18 @@ export class EmployeeComponent implements OnInit {
           this.memberData.push(data.filter((x:ProjectMembers) => x.projectId == id))
           this.teamMembers = this.memberData.flat()
         }
-        this.teamCount = this.teamMembers.map(member => member.userListId).length
-        console.log('total team members', this.teamCount);
+        this.teamCount = [... new Set(this.teamMembers.map(member => member.userListId))].length
       });
 
     this.dashboardService
       .loadClients()
       .pipe(first())
       .subscribe((data) => {
-        console.log("client data: ", data)
         for (let id of this.clientIds) {
           this.clients.push(
             data.filter((client: Client) => client.id == id)[0].clientName
           );
         }
-      console.log("client names: ", this.clients)
       });
 
       this.dashboardService
@@ -104,7 +97,6 @@ export class EmployeeComponent implements OnInit {
       .subscribe((data) => {
         this.tasks = data.filter((x:Task) => x.assignedToId == this.currentUser.id)
         this.taskCount = this.tasks.length
-      console.log("tasks: ", this.tasks)
       });
   }
 

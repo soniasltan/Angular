@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="card mx-auto mt-5" style="width: 90%">
+        <div class="card-header text-center">
+            <h4 class="mb-0">Create New Client</h4>
+        </div>
+        <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+            <div class="card-body px-4 py-4 d-flex flex-column align-items-center text-start">
+                <div class="card-text d-flex flex-column justify-content-center" style="width: 80%;">
+                    <div class="form-group row mb-2">
+                        <label for="clientName" class="col-sm-4 col-form-label">Client Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="clientName" id="clientName"
+                                [ngClass]="{
+                            'is-invalid': addClientForm.get('clientName').invalid && (addClientForm.get('clientName').dirty || addClientForm.get('clientName').touched || addClientForm.submitted),
+
+                            'is-valid': addClientForm.get('clientName').valid && (addClientForm.get('clientName').dirty || addClientForm.get('clientName').touched || addClientForm.submitted) }">
+                            <span class="text-danger"
+                                *ngIf="addClientForm.get('clientName').invalid && (addClientForm.get('clientName').dirty || addClientForm.get('clientName').touched || addClientForm.submitted) && addClientForm.get('clientName').errors?.required">
+                                Client name cannot be blank</span>
+
+                            <span class="text-danger"
+                                *ngIf="addClientForm.get('clientName').invalid && (addClientForm.get('clientName').dirty || addClientForm.get('clientName').touched || addClientForm.submitted) && addClientForm.get('clientName').errors?.minlength">
+                                Client name must contain at least 4 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="phonenumber" class="col-sm-4 col-form-label">Phone Number</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" id="phonenumber" formControlName="phonenumber"
+                                [ngClass]="{
+                                'is-invalid': addClientForm.get('phonenumber').invalid && (addClientForm.get('phonenumber').dirty || addClientForm.get('phonenumber').touched || addClientForm.submitted),
+                                
+                                'is-valid': addClientForm.get('phonenumber').valid && (addClientForm.get('phonenumber').dirty || addClientForm.get('phonenumber').touched || addClientForm.submitted) }">
+
+                            <span class="text-danger"
+                                *ngIf="addClientForm.get('phonenumber').invalid && (addClientForm.get('phonenumber').dirty || addClientForm.get('phonenumber').touched || addClientForm.submitted) && addClientForm.get('phonenumber').errors?.required">
+                                Phone number cannot be blank</span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                        <label for="address" class="col-sm-4 col-form-label">Address</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="address" formControlName="address"
+                                [ngClass]="{
+                                    'is-invalid': addClientForm.get('address').invalid && (addClientForm.get('address').dirty || addClientForm.get('address').touched || addClientForm.submitted),
+                                    
+                                    'is-valid': addClientForm.get('address').valid && (addClientForm.get('address').dirty || addClientForm.get('address').touched || addClientForm.submitted) }">
+
+                            <span class="text-danger"
+                                *ngIf="addClientForm.get('address').invalid && (addClientForm.get('address').dirty || addClientForm.get('address').touched || addClientForm.submitted) && addClientForm.get('address').errors?.required">
+                                Address cannot be blank</span>
+
+                            <span class="text-danger"
+                                *ngIf="addClientForm.get('address').invalid && (addClientForm.get('address').dirty || addClientForm.get('address').touched || addClientForm.submitted) && addClientForm.get('address').errors?.minlength">
+                                Address must contain at least 2 characters</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </div>
+            <div class="card-footer text-muted footerbtns d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary mx-1 px-3 float-start" routerLink="/dashboard/addproject">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary mx-1 px-3">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>

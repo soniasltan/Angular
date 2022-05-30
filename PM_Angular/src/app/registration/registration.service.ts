@@ -17,8 +17,6 @@ export class RegistrationService {
   createUser(username: string, password: string, userRolesId: number, firstName: string, lastName: string, email: string, phonenumber: string, address: string) {
     return this.http.post<any>(`${environment.apiUrl}/UserLists`, {username, password, userRolesId, firstName, lastName, email, phonenumber, address})
     .pipe(map(res => {
-      console.log(res);
-      console.log(res.message);
       this.newUserId = res?.data?.[0]?.id;
       return res;
     }))
