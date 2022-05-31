@@ -59,8 +59,8 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   getClientName(clientId: number){
-    this.filteredClient = this.clientList.filter(client => client.id == clientId);
-    return this.filteredClient[0].clientName
+    this.filteredClient = this.clientList?.filter(client => client.id == clientId);
+    return this.filteredClient?.[0].clientName
   }
 
 }

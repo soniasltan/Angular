@@ -73,7 +73,9 @@ export class AddProjectComponent implements OnInit {
               .subscribe(data => {
                 console.log("new project member: ", data)
               })
-              this.router.navigate([this.returnUrl]);
+              this.router.navigateByUrl('/', {skipLocationChange:true}).then(() => {
+                this.router.navigate([this.returnUrl])
+              })
             },
               error => {
                   this.error = error.error;

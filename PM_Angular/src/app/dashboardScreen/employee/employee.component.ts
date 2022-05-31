@@ -86,18 +86,18 @@ export class EmployeeComponent implements OnInit {
       .subscribe((data) => {
         for (let id of this.clientIds) {
           this.clients.push(
-            data.filter((client: Client) => client.id == id)[0].clientName
+            data.filter((client: Client) => client.id == id)?.[0].clientName
           );
         }
       });
 
-      this.dashboardService
-      .loadTasks()
-      .pipe(first())
-      .subscribe((data) => {
-        this.tasks = data.filter((x:Task) => x.assignedToId == this.currentUser.id)
-        this.taskCount = this.tasks.length
-      });
+      // this.dashboardService
+      // .loadTasks()
+      // .pipe(first())
+      // .subscribe((data) => {
+      //   this.tasks = data.filter((x:Task) => x.assignedToId == this.currentUser.id)
+      //   this.taskCount = this.tasks.length
+      // });
   }
 
 }

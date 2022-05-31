@@ -142,7 +142,9 @@ export class ShowProjectComponent implements OnInit {
     this.dashboardService.deleteProject(this.projectId)
     .pipe(first())
     .subscribe(data => {
+      this.router.navigateByUrl('/', {skipLocationChange:true}).then(() => {
       this.router.navigateByUrl('/dashboard')
+    })
       console.log("submitted", data)
     })
   }
